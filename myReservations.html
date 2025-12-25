@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reservations</title>
+    <link rel="stylesheet" href="myReservations.css">
+</head>
+<body>
+   <nav class="navbar">
+    <div class="logo">CarGo</div>
+    <ul class="nav-links">
+        <li><a href="home2.html">Home</a></li>
+        <li><a href="login.php">Login</a></li>
+        <li><a href="register.php">Register</a></li>
+        <li><a href="car_details.html">Car Details</a></li>
+        <li><a href="Reservations.html">Reservation</a></li>
+        <li><a href="myReservations.html">My Reservations</a></li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>My Reservations</h1>
+            <a href="Reservations.html" class="back-link">New Reservation</a>
+        </div>
+        
+        <div class="reservations-section">
+            <table class="reservations-table">
+                <thead>
+                    <tr>
+                        <th>Reservation ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Car Type</th>
+                        <th>Pickup Date</th>
+                        <th>Dropoff Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="reservationsList">
+                    <tr>
+                        <td colspan="9" class="no-data">Loading reservations...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <script>
+        function loadReservations() {
+            fetch('myReservations.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('reservationsList').innerHTML = data;
+                })
+                .catch(error => {
+                    document.getElementById('reservationsList').innerHTML = '<tr><td colspan="9" class="no-data">Error loading reservations</td></tr>';
+                });
+        }
+        
+        function editReservation(id) {
+            alert('Edit reservation ' + id + ' - Coming soon!');
+        }
+        
+        function deleteReservation(id) {
+            if (confirm('Are you sure you want to delete this reservation?')) {
+                alert('Delete reservation ' + id + ' - Coming soon!');
+            }
+        }
+        
+        loadReservations();
+    </script>
+</body>
+</html>
